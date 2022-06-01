@@ -11,6 +11,9 @@ jobs:
     - uses: superbrothers/close-pull-request@v3.0.0
       with:
         # Optional. Post a issue comment just before closing a pull request.
-        comment: "We do not accept PRs. If you have any questions, please feel free to contact us."
+        comment: "Thanks for your contribution!  Unfortunately, we don't use GitHub pull
+                  requests to manage code contributions to this repository.  Instead, please
+                  see https://ipdk.io/development which provides instructions on how to
+                  submit patches to the IPDK Gerrit instance."
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
