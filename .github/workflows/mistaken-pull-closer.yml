@@ -1,10 +1,26 @@
-filters:
-  - true
+---
+name: 'Test Integration'
 
-commentBody: |
-  Thanks for your contribution!  Unfortunately, we don't use GitHub pull
-  requests to manage code contributions to this repository.  Instead, please
-  see https://ipdk.io/development which provides instructions on how to
-  submit patches to the IPDK Gerrit instance.
-  
-addLabel: false
+on: [ pull_request, push ]
+
+
+concurrency:
+  # if workflow for PR or push is already running stop it, and start new one
+  group: storage-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  run_test:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v3
+      - name: 'Run Tests'
+        run: |
+          echo "hello world"  
+      - name: 'Run Tests'
+        if: github.event_name == 'push'
+        run: |
+          echo "hello"
